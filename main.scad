@@ -53,6 +53,8 @@ module axis(h=1) {
     color("blue") cylinder(h=h, d1=0.2*h, d2=0);
 }
 
+i = -1;
+
 rp = 8;
 leg_h = 20;
 leg_r = sqrt(2)/4 * leg_h;
@@ -60,7 +62,6 @@ leg_r = sqrt(2)/4 * leg_h;
 angle_z = 0;
 angle_y = 30 * cos($t * 360);
 angle_x = ($t < 0.5) ? 30 * sin($t * 360) : 0;
-
 targ_ori = qmul(
     qaxis(angle_z, [0, 0, 1]),
     qmul(
@@ -86,19 +87,19 @@ module ring(r) {
 }
 
 ori0 = qrot(qmul(targ_ori, qaxis(-90, [0, 1, 0])), [0, 0, 1]);
-alpha0 = acos(-sqrt(2) * ori0[2]);
+alpha0 = i * acos(-sqrt(2) * ori0[2]);
 mx0 = sin(alpha0);
 my0 = -sqrt(2) * cos(alpha0) / 2;
 q0 = angle_to([mx0, my0, 0], [ori0[0], ori0[1], 0], [0, 0, 1]);
 
 ori1 = qrot(qmul(qmul(targ_ori, qaxis(120, [0, 0, 1])), qaxis(-90, [0, 1, 0])), [0, 0, 1]);
-alpha1 = acos(-sqrt(2) * ori1[2]);
+alpha1 = i * acos(-sqrt(2) * ori1[2]);
 mx1 = sin(alpha1);
 my1 = -sqrt(2) * cos(alpha1) / 2;
 q1 = angle_to([mx1, my1, 0], [ori1[0], ori1[1], 0], [0, 0, 1]);
 
 ori2 = qrot(qmul(qmul(targ_ori, qaxis(240, [0, 0, 1])), qaxis(-90, [0, 1, 0])), [0, 0, 1]);
-alpha2 = acos(-sqrt(2) * ori2[2]);
+alpha2 = i * acos(-sqrt(2) * ori2[2]);
 mx2 = sin(alpha2);
 my2 = -sqrt(2) * cos(alpha2) / 2;
 q2 = angle_to([mx2, my2, 0], [ori2[0], ori2[1], 0], [0, 0, 1]);
